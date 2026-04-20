@@ -37,7 +37,7 @@
 14. Per fermare il server ci sono due metodi:
     - premere 'ctrl-c' nel terminale
     - premere l'icona del cestino che si trova a fianco di ogni terminale aperto all'avvio di un server
-    
+15. - Comando 'npm list primeng @angular/core' per vedere le versioni di Angular e PrimeNg. Devono essere le stesse (es. Angular 21 = PrimeNg 21)
 
     
 

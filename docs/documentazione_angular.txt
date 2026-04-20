@@ -17,3 +17,7 @@
    Questi due file servono per indicare al dispositivo che la installa che è 'un'app vera', che può
    essere installata o salvata in cache.
 5. Angular funziona in modalità 'Hot reload', ovvero le modifiche vengono effettuate in tempo reale
+
+
+---- Funzioni Angular ----
+1. signal() -> assegnto ad una variabile, è un valore che Angular osserva. Quando cambia aggiorna in automatico il template
