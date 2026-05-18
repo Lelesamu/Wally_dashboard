@@ -20,4 +20,4 @@
 
 
 ---- Funzioni Angular ----
-1. signal() -> assegnto ad una variabile, è un valore che Angular osserva. Quando cambia aggiorna in automatico il template
+1. signal() -> assegnto ad una variabile, è un valore che Angular osserva. Quando cambia aggiorna in automatico il template solo in quel punto dove viene usato
