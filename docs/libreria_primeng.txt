@@ -1,3 +1,5 @@
 1. Installo la libreria tramite il comando (utilizziamo npm) 'npm install primeng @primeuix/themes'
 2. Installo le icone di PrimeNg con il comando 'npm install primeicons'
 3. Posso eseguire i due passaggi precedenti in un unico passaggio tramite il comando 'npm install primeng @primeuix/themes primeicons'
+4. La versione della libreria installata deve corrispondere alla versione di Angular
+5. OPZIONALE: Installare il framework Tailwind per le funzioni di CSS (nel progetto 'Wally Dashboard' è presente)
