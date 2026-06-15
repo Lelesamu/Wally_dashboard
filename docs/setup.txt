@@ -39,5 +39,100 @@
     - premere l'icona del cestino che si trova a fianco di ogni terminale aperto all'avvio di un server
 15. - Comando 'npm list primeng @angular/core' per vedere le versioni di Angular e PrimeNg. Devono essere le stesse (es. Angular 21 = PrimeNg 21)
 
+-- BACKEND (NestJS)
+Prerequisiti
+1. Node.js versione LTS (v22) — NON usare versioni dispari (v25, v23 ecc.) perché causano problemi
+2. Per installare Node v22 in modo sicuro usare nvm:
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+   (riapri il terminale dopo l'installazione)
+   nvm install 22
+   nvm use 22
+   node -v  -> deve mostrare v22.x.x
+
+Creazione del progetto backend
+1. Dalla root del progetto (es. Wally_dashboard/) installo la CLI di NestJS globalmente:
+   npm install -g @nestjs/cli
+2. Creo il progetto backend:
+   nest new backend
+   Scelgo 'npm' come package manager quando richiesto
+3. La struttura creata sarà:
+   backend/
+   ├── src/
+   │   ├── app.controller.ts
+   │   ├── app.module.ts
+   │   ├── app.service.ts
+   │   └── main.ts
+   ├── package.json
+   └── tsconfig.json
+
+ATTENZIONE — Versione TypeScript
+- NestJS non supporta ancora TypeScript 5.9+. Se hai problemi, fai il downgrade:
+- npm install typescript@5.4 --save-dev --legacy-peer-deps
+  Verifica la versione con: npx tsc --version -> deve mostrare 5.4.x
+
+Avviare il backend
+1. Entro nella cartella backend: cd backend
+2. Avvio in modalità sviluppo (si riavvia automaticamente ad ogni modifica):
+   npm run start:dev
+3. Il backend sarà attivo su http://localhost:3000
+4. Per fermarlo: ctrl-c nel terminale
+
+Struttura consigliata del progetto
+backend/src/
+├── auth/                    -> modulo autenticazione (login/register)
+│   ├── dto/
+│   ├── auth.module.ts
+│   ├── auth.controller.ts
+│   └── auth.service.ts
+├── notes/                   -> modulo note
+├── alarms/                  -> modulo sveglie
+├── app.module.ts
+
+└── main.ts
+Creare un nuovo modulo
+1. Tramite CLI (se funziona):
+   - nest g module auth
+   - nest g controller auth
+   - nest g service auth
+2. Manualmente (alternativa se la CLI si blocca):
+   mkdir src/auth
+   Poi creare i file auth.module.ts, auth.controller.ts, auth.service.ts a mano
+   (vedi esempi nel codice del progetto)
+
+DTO e Interfacce
+1. I DTO vanno nella cartella dto/ dentro il modulo:
+   src/auth/dto/create-user.dto.ts
+2. Le interfacce vanno nella cartella interfaces/ dentro il modulo:
+   src/auth/interfaces/user.interface.ts
+3. Usare '!' per le proprietà nei DTO invece di inizializzarle:
+   name!: string;  -> corretto
+   name: string = "";  -> da evitare
+
+Librerie essenziali da installare
+1. npm install @nestjs/typeorm typeorm pg         -> database PostgreSQL
+2. npm install @nestjs/jwt @nestjs/passport passport passport-jwt  -> autenticazione JWT
+3. npm install class-validator class-transformer  -> validazione dati
+4. npm install --legacy-peer-deps                 -> aggiungere se npm si blocca
+
+gitignore — IMPORTANTE
+1. Prima di fare qualsiasi commit creare il file .gitignore nella root e in backend/
+2. Il file deve contenere almeno:
+   - node_modules/
+   - dist/
+   - .env
+   - .DS_Store
+3. Per rimuovere node_modules già tracciati da Git:
+   - git rm -r --cached node_modules
+   - git add .
+   - git commit -m "Add .gitignore"
+
+Lavorare con frontend e backend contemporaneamente
+1. Aprire due terminali separati in VS Code (tasto + nel pannello terminale)
+2. Terminale 1 (frontend):
+   cd frontend
+   npm start           -> http://localhost:4200
+3. Terminale 2 (backend):
+   cd backend
+   npm run start:dev   -> http://localhost:3000
     
 
