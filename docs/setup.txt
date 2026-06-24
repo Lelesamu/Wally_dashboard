@@ -134,5 +134,20 @@ Lavorare con frontend e backend contemporaneamente
 3. Terminale 2 (backend):
    cd backend
    npm run start:dev   -> http://localhost:3000
+
+-- DATABASE (PostgresSQL)
+1. Utilizzato il servizio Supebase (DBaaS - Database as a Service); fornisce un db in cloud già configurato (gratuito)
+2. Connessione tramite 'Connection String': utilizzata la modalità 'Session Pooler' di Supebase che supporta IPv4. La variante 'Connection Direct'
+   supporta solo la connessione IPv6
+3. Installato il plugin di PostgreSQL su VS code
+4. Creare connessione nel plugin:
+   - recuperare le credenziali da Supebase:
+      Host:      aws-0-eu-central-1.pooler.supabase.com
+      Port:      5432
+      Database:  postgres
+      Username:  postgres.jesdaaupmgpfewcnivxk
+      Password:  *** (quella del db su Supebase)
+      SSL:       required
+
     
 
