@@ -148,6 +148,31 @@ Lavorare con frontend e backend contemporaneamente
       Username:  postgres.jesdaaupmgpfewcnivxk
       Password:  *** (quella del db su Supebase)
       SSL:       required
+5. Integrazione NestJS - Db tramite TypeORM (Object-Relational Mapping)
+6. TypeORM consente di mappare le classi TypeScript in tabelle del db. 
+   Elimina la necessità di scrivere query sql per operazioni CRUD (Create-Read-Update-Delete).
+   Comprende anche la configurazione asincrona
 
+-- TYPEORM
+1. Installazione delle dipendendenze tramite il comano'npm install @nestjs/typeorm typeorm pg'
+   (P.S.: pg -> indica Postgress)
+2. Creo un file .env dove indico tutti le info di configurazione del Db
+   POSTGRES_HOST=<nome-host>
+   POSTGRES_PORT=<porta>
+   POSTGRES_USER=<nome-user>
+   POSTGRES_PASSWORD=<password>
+   POSTGRES_DB=<nome-db>
+3. Importo il modulo TypeOrmModule con il metodo forRootAsync() in AppModule con el sue relative configurazioni di connessione,
+   facendo riferimento al file .env (questo file non va su gir, quindi va aggiunto nel gitignore). Con  questo metodo passo i dati in modo asincrono e importare anche il ConfigModule. 
+   Necessario anche installare il pacchetto 'npm install @nestjs/config'. Questo pacchetto gestische variabili
+   d'ambiente e file di configurazione. Permette di caricare variabili da file .env e fornisce il 
+   servizio COnfigService iniettabile
+4. In AppModule la voce 'synchronize: true' non deve essere usata in produzione, se no si rischia di perdere i dati
+5. La voce entities indica a TypeORM dove trovare le classi Entity:
+   Cerca automaticamente tutti i file che finiscono con .entity.ts o .entity.js
+   in qualsiasi sottocartella → non serve registrare manualmente ogni entità.
+6. Le Entity sono classi TypeScript che rappresentano classi del db. Con 'synchronize: true' la tabella sul db
+   viene aggiornata automaticamente.
+7. Repository sono la classe che usa TypeORM per fare le query al database
     
 

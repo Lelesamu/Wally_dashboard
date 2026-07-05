@@ -17,7 +17,7 @@ import { UsersModule } from './users/users.module';
         username: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true, // Be cautious about using synchronize in production
       }),
       inject: [ConfigService],
