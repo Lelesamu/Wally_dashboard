@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,10 +20,12 @@ import { UsersModule } from './users/users.module';
         database: configService.get('POSTGRES_DB'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true, // Be cautious about using synchronize in production
+        ssl: { rejectUnauthorized: false },
       }),
       inject: [ConfigService],
     }),
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

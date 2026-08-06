@@ -1,19 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+import { Exclude } from "class-transformer";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+// Nome della tabella nel database: wd_users
+@Entity('wd_users')
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ unique: true })
+    @Column()
     username: string;
 
-    @Column({ unique: true })
-    email: string;
-
     @Column()
+    @Exclude()
     password: string;
-
-    @CreateDateColumn()
-    createdAt: Date;
 }
