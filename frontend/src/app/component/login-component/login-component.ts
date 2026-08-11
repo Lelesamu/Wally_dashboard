@@ -4,6 +4,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-login-component',
@@ -18,7 +19,8 @@ export class LoginComponent {
 
   public constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private dialog: DialogService
   ) {}
   
   login(): void {
@@ -40,5 +42,9 @@ export class LoginComponent {
         //this.isLoading = false;
       }
     });
+  }
+
+  register(): void {
+    
   }
 }
