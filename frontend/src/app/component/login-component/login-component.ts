@@ -4,7 +4,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { RegisterDialogComponent } from '../dialog/register-dialog-component/register-dialog-component';
+
 
 @Component({
   selector: 'app-login-component',
@@ -12,19 +14,21 @@ import { DialogService } from 'primeng/dynamicdialog';
   standalone: true,
   templateUrl: './login-component.html',
   styleUrl: './login-component.scss',
+  providers: [DialogService]
 })
 export class LoginComponent {
   public username: string = '';
   public password: string = '';
+  public ref: DynamicDialogRef | null = null;
+
 
   public constructor(
     private authService: AuthService,
     private router: Router,
-    private dialog: DialogService
+    private dialogService: DialogService
   ) {}
   
   login(): void {
-    console.log(this.username);
     this.authService.login({ username: this.username, password: this.password }).subscribe({
       next: (response) => {
         // Salva il token
@@ -44,7 +48,11 @@ export class LoginComponent {
     });
   }
 
-  register(): void {
-    
+
+  register() {
+    this.ref = this.dialogService.open(RegisterDialogComponent, {
+      header: 'Register',
+      closable: true,
+    });
   }
 }
