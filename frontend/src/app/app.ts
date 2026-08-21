@@ -8,10 +8,7 @@ import { RegisterDialogComponent } from './component/dialog/register-dialog-comp
 @Component({
   selector: 'app-root',
   imports: [
-    LoginComponent, 
-    RegisterDialogComponent, 
-    RouterOutlet, 
-    Button],
+    LoginComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -11,6 +11,11 @@ export interface LoginResponse {
     access_token: string;
 }
 
+export interface RegisterDto {
+    username: string;
+    password: string;
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -21,6 +26,10 @@ export class AuthService {
 
     login(dto: LoginDto): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(`${this.apiUrl}/login`, dto);
+    }
+
+    register(dto: RegisterDto): Observable<any> {
+        return this.http.post(`${this.apiUrl}/register`, dto);
     }
 
     // Salva il token nel localStorage

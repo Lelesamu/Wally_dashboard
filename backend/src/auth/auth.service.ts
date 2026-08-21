@@ -13,18 +13,18 @@ export class AuthService {
   ) {}
 
   async register(dto: RegisterDto) {
-  const existing = await this.usersService.findByUsername(dto.username);
-  if (existing) throw new UnauthorizedException("Email already in use");
+    const existing = await this.usersService.findByUsername(dto.username);
+    if (existing) throw new UnauthorizedException("Username already in use");
 
-  const hashed = await bcrypt.hash(dto.password, 10);
-  const user = await this.usersService.create({
-    ...dto,
-    password: hashed,
-  });
+    const hashed = await bcrypt.hash(dto.password, 10);
+    const user = await this.usersService.create({
+      ...dto,
+      password: hashed,
+    });
 
-  const { password: _, ...safeUser } = user;
-  return safeUser;
-}
+    const { password: _, ...safeUser } = user;
+    return safeUser;
+  }
 
   async login(dto: LoginDto) {
     const user = await this.usersService.findByUsername(dto.username);
