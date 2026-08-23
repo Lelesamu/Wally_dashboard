@@ -15,7 +15,7 @@ import { ToastModule } from 'primeng/toast';
   standalone: true,
   templateUrl: './login-component.html',
   styleUrl: './login-component.scss',
-  providers: [DialogService, MessageService]
+  providers: [DialogService]
 })
 export class LoginComponent {
   public username: string = '';
@@ -44,8 +44,8 @@ export class LoginComponent {
         // Salva il token
         this.authService.saveToken(response.access_token);
         // Vai alla dashboard
-        //this.router.navigate(['/dashboard']);
         this.messageService.add({severity:'success', summary: 'Login Successful', detail: 'You have been logged in successfully.'});
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.messageService.add({severity:'error', summary: 'Login Failed', detail: err.error?.message || 'Invalid credentials.'});
