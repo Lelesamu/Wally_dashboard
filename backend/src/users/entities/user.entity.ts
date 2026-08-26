@@ -4,13 +4,13 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 // Nome della tabella nel database: wd_users
 @Entity('wd_users')
 export class User {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
 
-    @Column()
+    @Column({ name: 'username' })
     username: string;
 
-    @Column()
+    @Column({ name: 'pwd' })
     @Exclude()
     password: string;
 }

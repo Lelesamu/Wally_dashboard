@@ -1,9 +1,9 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
 // Tab DB: wd_nav
 @Entity('wd_nav')
 export class Nav {
-    @Column()
+    @PrimaryColumn()
     name: string;
 
     @Column()
