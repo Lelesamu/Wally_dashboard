@@ -1,16 +1,24 @@
 import { Exclude } from "class-transformer";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
 
-// Nome della tabella nel database: wd_users
+// TODO: Aggiornare direttamente la tabella su db prima di avviare il backend
+
+/**
+ * Entity TypeORM associata alla tabella `wd_users`.
+ *
+ * Unique TypeORM:
+ * ogni username deve essere univoco.
+ */
 @Entity('wd_users')
+@Unique(['username'])
 export class User {
     @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
 
-    @Column({ name: 'username' })
+    @Column({ name: 'username', type: 'varchar', length: 50, nullable: false })
     username: string;
 
-    @Column({ name: 'pwd' })
+    @Column({ name: 'pwd', type: 'varchar', nullable: false })
     @Exclude()
     password: string;
 }
