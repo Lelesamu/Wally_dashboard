@@ -10,13 +10,13 @@ export class NavService {
         private repo: Repository<Nav>
     ) {}
 
-    create(data: Partial<Nav>) {
-        const nav = this.repo.create(data);
-        return this.repo.save(nav);
-    }
-
     // Select di tutte le righe della tabella nav
     findAll() {
         return this.repo.find();
+    }
+
+    // Select di tutte le righe filtrate per menuType
+    findByType(menuType: string) {
+        return this.repo.find({ where: { menuType } });
     }
 }

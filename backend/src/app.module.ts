@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { NavModule } from './nav/nav.module';
 
 @Module({
   imports: [
@@ -19,13 +20,14 @@ import { AuthModule } from './auth/auth.module';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: false, // Be cautious about using synchronize in production
+        synchronize: true, // Be cautious about using synchronize in production
         ssl: { rejectUnauthorized: false },
       }),
       inject: [ConfigService],
     }),
     UsersModule,
     AuthModule,
+    NavModule
   ],
   controllers: [AppController],
   providers: [AppService],
