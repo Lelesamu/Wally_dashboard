@@ -20,7 +20,8 @@ import { NavModule } from './nav/nav.module';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true, // Be cautious about using synchronize in production
+        migrations: [__dirname + '/migrations/*{.ts,.js}'],
+        synchronize: false, // Be cautious about using synchronize in production
         ssl: { rejectUnauthorized: false },
       }),
       inject: [ConfigService],

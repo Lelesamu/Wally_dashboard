@@ -15,6 +15,7 @@ export class UsersService {
         return this.repo.save(user);
     }
 
+    // Select by username
     findByUsername(username: string) {
         return this.repo.findOne({ where: { username } });
     }
