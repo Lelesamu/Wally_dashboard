@@ -3,7 +3,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
 import { NavService } from '../../services/nav.service';
-import { MenuHeader } from '../menu-header/menu-header';
+import { MenuHeaderComponent } from '../menu-header-component/menu-header-component';
 
 
 // TODO: Modificare tabella wd_users su db, non corrisponde con la nuova entity aggiornata (campi NULL -> NOT NULL...)
@@ -14,7 +14,7 @@ import { MenuHeader } from '../menu-header/menu-header';
     AvatarModule,
     DrawerModule,
     ButtonModule,
-    MenuHeader
+    MenuHeaderComponent
   ],
   templateUrl: './home-component.html',
   styleUrl: './home-component.scss',
