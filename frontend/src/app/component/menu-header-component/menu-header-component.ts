@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { NavService } from '../../services/nav.service';
 import { MenuModule } from 'primeng/menu';
 import { RippleModule } from 'primeng/ripple';
+import { TabsModule } from 'primeng/tabs'
 
 @Component({
   selector: 'app-menu-header',
@@ -16,7 +17,8 @@ import { RippleModule } from 'primeng/ripple';
     AvatarModule,
     DrawerModule,
     ButtonModule,
-    RippleModule
+    RippleModule,
+    TabsModule
   ],
   templateUrl: './menu-header-component.html',
   styleUrl: './menu-header-component.scss',
@@ -27,6 +29,8 @@ export class MenuHeaderComponent implements OnInit {
     barItems: MenuItem[] | undefined;
     sideItems: MenuItem[] | undefined;
     visible: boolean = false;
+
+    @ViewChild('drawerRef') drawerRef!: Drawer;
 
   constructor(
       private navService: NavService
@@ -109,6 +113,11 @@ export class MenuHeaderComponent implements OnInit {
                 icon: 'pi pi-bars'
             }
         ]
+        
+    }
+
+    closeCallback(e: Event): void {
+        this.drawerRef.close(e);
     }
 
     
