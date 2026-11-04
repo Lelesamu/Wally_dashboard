@@ -49,7 +49,6 @@ export class LoginComponent {
       },
       error: (err) => {
         this.messageService.add({severity:'error', summary: 'Login Failed', detail: err.error?.message || 'Invalid credentials.'});
-        console.log(err);
         
         if (this.username.length <= 0) {
           this.userError = true; 
